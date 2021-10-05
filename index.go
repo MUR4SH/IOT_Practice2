@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	parser "github.com/MUR4SH/IOT_Practice2/tree/main/modules/coderEncoder"
 
-	parser "~/Users/alex-murashev/Documents/GitHub/IOT_Practice2/modules/coderEncoder.go"
+	"fmt"
 )
 
 func main() {
