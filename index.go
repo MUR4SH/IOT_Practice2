@@ -1,7 +1,7 @@
 package main
 
 import (
-	parser "github.com/MUR4SH/IOT_Practice2/tree/main/modules/coderEncoder"
+	parser "github.com/MUR4SH/IOT_Practice2/tree/main/modules"
 
 	"fmt"
 )
