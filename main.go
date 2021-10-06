@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	_, _, h := JSON_decode(JSON_encode(1, "text1", "text2"))
+	_, _, h := XML_decode(XML_encode(1, "text1", "text2"))
 	fmt.Println(h)
 }

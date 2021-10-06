@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"log"
 )
 
@@ -14,18 +15,22 @@ type Format struct {
 
 // Кодирует трое данных в json (возвращает массив byte)
 func JSON_encode(r_id uint, r_time string, r_hash string) []byte {
-	generated_json, err := json.Marshal(Format{r_id, r_time, r_hash}) // Создаем объект и делаем из него json
+	g_json, err := json.Marshal(Format{r_id, r_time, r_hash}) // Создаем объект и делаем из него json
 	if err != nil {
 		log.Fatal(err)
 	}
-	return generated_json
+	return g_json
 }
 
-/*func XML_encode() []byte {
-	return
+func XML_encode(r_id uint, r_time string, r_hash string) []byte {
+	g_xml, err := xml.Marshal(Format{r_id, r_time, r_hash})
+	if err != nil {
+		log.Fatal(err)
+	}
+	return g_xml
 }
 
-func HTML_encode() []byte {
+/*func HTML_encode() []byte {
 	return
 }*/
 
@@ -39,10 +44,15 @@ func JSON_decode(r_json []byte) (uint, string, string) {
 	return m.Id, m.Timestamp, m.Hash
 }
 
-/*func XML_decode() (uint, string, string) {
-
+func XML_decode(r_xml []byte) (uint, string, string) {
+	var m Format
+	err := xml.Unmarshal(r_xml, &m)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return m.Id, m.Timestamp, m.Hash
 }
 
-func HTML_decode() (uint, string, string) {
+/*func HTML_decode() (uint, string, string) {
 
 }*/
