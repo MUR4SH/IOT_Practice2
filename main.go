@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	_, _, h := XML_decode(XML_encode(1, "text1", "text2"))
-	fmt.Println(h)
+	i, _, _ := HTML_decode(HTML_encode(1, "text1", "text2"))
+	fmt.Println(i)
 }
