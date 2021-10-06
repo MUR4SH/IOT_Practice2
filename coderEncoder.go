@@ -40,6 +40,7 @@ func XML_encode(r_id uint, r_time string, r_hash string) []byte {
 	<span id='timestamp'><span>
 	<span id='hash'><span>
 </div>
+Возвращает строку
 */
 func HTML_encode(r_id uint, r_time string, r_hash string) string {
 	var html string = "<div id='html_data'>"
@@ -68,25 +69,14 @@ func XML_decode(r_xml []byte) (uint, string, string) {
 	return m.Id, m.Timestamp, m.Hash
 }
 
+//Принимает строку
 func HTML_decode(html string) (int, string, string) {
 	var id int
 	var time, hash string
 	html = strings.ReplaceAll(html, "<div id='html_data'><span id='id'>", "")
 
-	id, _ = strconv.Atoi(strings.TrimRight(html, "</span>"))
-	log.Print(html)
-	html = strings.TrimRight(html, "</span>")
-	log.Print(html)
-	html = strings.ReplaceAll(html, "<span id='timestamp'>", "")
-	log.Print(html)
-
-	time = strings.TrimRight(html, "</span>")
-
-	html = strings.TrimLeft(html, "</span>")
-	html = strings.ReplaceAll(html, "<span id='hash'>", "")
-	log.Print(html)
-
-	hash = strings.TrimRight(html, "</span>")
-
+	id, _ = strconv.Atoi((strings.Split(html, "</span>"))[0])
+	time = strings.ReplaceAll((strings.Split(html, "</span>"))[1], "<span id='timestamp'>", "")
+	hash = strings.ReplaceAll((strings.Split(html, "</span>"))[2], "<span id='hash'>", "")
 	return id, time, hash
 }
